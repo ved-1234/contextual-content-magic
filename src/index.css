@@ -2,41 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Smart Find & Replace CMS Design System */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core CMS Theme */
+    --background: 220 15% 97%;
+    --foreground: 220 25% 15%;
 
+    /* Cards & Surfaces */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 25% 15%;
+    --panel: 220 10% 98%;
+    --panel-foreground: 220 20% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* CMS Primary - Professional Deep Blue */
+    --primary: 220 75% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 220 75% 30%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* AI Features - Purple Accent */
+    --ai: 260 75% 45%;
+    --ai-foreground: 0 0% 100%;
+    --ai-hover: 260 75% 40%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Success - Operations */
+    --success: 145 65% 42%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 145 45% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Warning - Cautions */
+    --warning: 35 90% 55%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 35 90% 96%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Highlight - Search Results */
+    --highlight: 45 100% 70%;
+    --highlight-foreground: 220 25% 15%;
+    --highlight-strong: 25 95% 60%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Editor Colors */
+    --editor-bg: 220 8% 99%;
+    --editor-selection: 220 75% 85%;
+    --editor-line: 220 10% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Semantic Tokens */
+    --secondary: 220 10% 92%;
+    --secondary-foreground: 220 25% 25%;
+    
+    --muted: 220 8% 94%;
+    --muted-foreground: 220 15% 55%;
 
-    --radius: 0.5rem;
+    --accent: 260 25% 92%;
+    --accent-foreground: 260 75% 35%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 12% 88%;
+    --input: 220 12% 96%;
+    --ring: 220 75% 35%;
+
+    --radius: 0.6rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 75% 35%), hsl(260 75% 45%));
+    --gradient-ai: linear-gradient(135deg, hsl(260 75% 45%), hsl(280 65% 55%));
+    --gradient-success: linear-gradient(135deg, hsl(145 65% 42%), hsl(165 60% 45%));
+    
+    /* Shadows */
+    --shadow-soft: 0 2px 8px hsl(220 25% 15% / 0.08);
+    --shadow-medium: 0 4px 16px hsl(220 25% 15% / 0.12);
+    --shadow-strong: 0 8px 32px hsl(220 25% 15% / 0.16);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,41 +96,63 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark Theme for CMS */
+    --background: 220 25% 8%;
+    --foreground: 220 10% 92%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 20% 12%;
+    --card-foreground: 220 10% 92%;
+    --panel: 220 15% 10%;
+    --panel-foreground: 220 10% 88%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --primary: 220 75% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 220 75% 50%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --ai: 260 75% 65%;
+    --ai-foreground: 0 0% 100%;
+    --ai-hover: 260 75% 60%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --success: 145 65% 55%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 145 45% 15%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --warning: 35 90% 65%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 35 90% 12%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --highlight: 45 100% 75%;
+    --highlight-foreground: 220 25% 8%;
+    --highlight-strong: 25 95% 70%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --editor-bg: 220 15% 9%;
+    --editor-selection: 220 75% 25%;
+    --editor-line: 220 10% 15%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 220 10% 85%;
+    
+    --muted: 220 10% 16%;
+    --muted-foreground: 220 15% 65%;
+
+    --accent: 260 25% 18%;
+    --accent-foreground: 260 75% 65%;
+
+    --destructive: 0 75% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 12% 22%;
+    --input: 220 12% 16%;
+    --ring: 220 75% 55%;
+
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 220 10% 88%;
+    --sidebar-primary: 220 75% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 220 10% 85%;
+    --sidebar-border: 220 12% 22%;
+    --sidebar-ring: 220 75% 55%;
   }
 }
 
@@ -100,6 +162,65 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-medium;
+  }
+
+  /* Custom Utilities */
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-ai {
+    background: var(--gradient-ai);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-fast {
+    transition: var(--transition-fast);
+  }
+
+  /* Highlight Animation */
+  @keyframes highlight-pulse {
+    0%, 100% { background-color: hsl(var(--highlight)); }
+    50% { background-color: hsl(var(--highlight-strong)); }
+  }
+
+  .highlight-pulse {
+    animation: highlight-pulse 0.6s ease-in-out;
+  }
+
+  /* Editor Styles */
+  .editor-highlight {
+    background-color: hsl(var(--highlight));
+    color: hsl(var(--highlight-foreground));
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  .editor-selection {
+    background-color: hsl(var(--editor-selection));
+    border-radius: 0.25rem;
   }
 }
