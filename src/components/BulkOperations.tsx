@@ -35,52 +35,52 @@ const BulkOperations = ({
   const completedOperations = operations.filter(op => op.status === 'completed');
 
   return (
-    <div className="p-6 max-w-6xl mx-auto space-y-6">
+    <div className="p-3 lg:p-6 max-w-6xl mx-auto space-y-4 lg:space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-foreground mb-2">Bulk Operations</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-xl lg:text-2xl font-bold text-foreground mb-2">Bulk Operations</h1>
+        <p className="text-sm lg:text-base text-muted-foreground">
           Manage large-scale content operations across your entire CMS
         </p>
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="p-4 hover:shadow-medium transition-smooth cursor-pointer" 
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
+        <Card className="p-3 lg:p-4 hover:shadow-medium transition-smooth cursor-pointer" 
               onClick={() => onStartOperation('find-replace')}>
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-gradient-primary rounded-lg">
-              <RefreshCw className="h-6 w-6 text-white" />
+          <div className="flex items-center space-x-2 lg:space-x-3">
+            <div className="p-2 bg-gradient-primary rounded-lg flex-shrink-0">
+              <RefreshCw className="h-4 w-4 lg:h-6 lg:w-6 text-white" />
             </div>
-            <div>
-              <h3 className="font-semibold text-foreground">Bulk Find & Replace</h3>
-              <p className="text-sm text-muted-foreground">Process all entries</p>
+            <div className="min-w-0">
+              <h3 className="font-semibold text-foreground text-sm lg:text-base">Bulk Find & Replace</h3>
+              <p className="text-xs lg:text-sm text-muted-foreground">Process all entries</p>
             </div>
           </div>
         </Card>
 
-        <Card className="p-4 hover:shadow-medium transition-smooth cursor-pointer"
+        <Card className="p-3 lg:p-4 hover:shadow-medium transition-smooth cursor-pointer"
               onClick={() => onStartOperation('brandkit-check')}>
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-gradient-ai rounded-lg">
-              <TrendingUp className="h-6 w-6 text-white" />
+          <div className="flex items-center space-x-2 lg:space-x-3">
+            <div className="p-2 bg-gradient-ai rounded-lg flex-shrink-0">
+              <TrendingUp className="h-4 w-4 lg:h-6 lg:w-6 text-white" />
             </div>
-            <div>
-              <h3 className="font-semibold text-foreground">Brandkit Audit</h3>
-              <p className="text-sm text-muted-foreground">Check compliance</p>
+            <div className="min-w-0">
+              <h3 className="font-semibold text-foreground text-sm lg:text-base">Brandkit Audit</h3>
+              <p className="text-xs lg:text-sm text-muted-foreground">Check compliance</p>
             </div>
           </div>
         </Card>
 
-        <Card className="p-4 hover:shadow-medium transition-smooth cursor-pointer"
+        <Card className="p-3 lg:p-4 hover:shadow-medium transition-smooth cursor-pointer md:col-span-2 lg:col-span-1"
               onClick={() => onStartOperation('link-validation')}>
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-warning rounded-lg">
-              <FileText className="h-6 w-6 text-white" />
+          <div className="flex items-center space-x-2 lg:space-x-3">
+            <div className="p-2 bg-warning rounded-lg flex-shrink-0">
+              <FileText className="h-4 w-4 lg:h-6 lg:w-6 text-white" />
             </div>
-            <div>
-              <h3 className="font-semibold text-foreground">Link Validation</h3>
-              <p className="text-sm text-muted-foreground">Check all links</p>
+            <div className="min-w-0">
+              <h3 className="font-semibold text-foreground text-sm lg:text-base">Link Validation</h3>
+              <p className="text-xs lg:text-sm text-muted-foreground">Check all links</p>
             </div>
           </div>
         </Card>

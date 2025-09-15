@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Search, Sparkles } from "lucide-react";
 import SearchPanel from '@/components/SearchPanel';
 import PreviewPanel from '@/components/PreviewPanel';
 import BulkOperations from '@/components/BulkOperations';
@@ -10,6 +12,7 @@ const Index = () => {
   const [replaceTerm, setReplaceTerm] = useState('');
   const [isAiEnabled, setIsAiEnabled] = useState(true);
   const [activeTab, setActiveTab] = useState('editor');
+  const [mobileTab, setMobileTab] = useState('search');
 
   // Mock data for demo
   const mockMatches = [
@@ -85,29 +88,104 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
+      {/* Responsive Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur">
-        <div className="flex items-center justify-between px-6 py-4">
-          <div className="flex items-center space-x-4">
+        <div className="flex items-center justify-between px-4 lg:px-6 py-3 lg:py-4">
+          <div className="flex items-center space-x-2 lg:space-x-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">SF</span>
+              <div className="w-6 h-6 lg:w-8 lg:h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs lg:text-sm">SF</span>
               </div>
-              <h1 className="text-xl font-bold text-gradient-primary">
+              <h1 className="text-lg lg:text-xl font-bold text-gradient-primary">
                 Smart Find & Replace
               </h1>
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="hidden sm:block text-xs lg:text-sm text-muted-foreground">
               Contentstack Marketplace App
             </div>
+          </div>
+
+          {/* Mobile AI Toggle */}
+          <div className="lg:hidden">
+            <Button
+              variant={isAiEnabled ? "default" : "outline"}
+              size="sm"
+              onClick={() => setIsAiEnabled(!isAiEnabled)}
+              className={isAiEnabled ? "bg-gradient-ai text-ai-foreground" : ""}
+            >
+              <Sparkles className="h-4 w-4" />
+            </Button>
           </div>
         </div>
       </header>
 
-      {/* Main Interface */}
-      <div className="flex">
+      {/* Mobile Layout (< lg) */}
+      <div className="lg:hidden">
+        <Tabs value={mobileTab} onValueChange={setMobileTab} className="flex flex-col h-[calc(100vh-65px)]">
+          <TabsList className="grid w-full grid-cols-4 m-2 mb-0">
+            <TabsTrigger value="search" className="text-xs">
+              <Search className="h-4 w-4 mr-1" />
+              Search
+            </TabsTrigger>
+            <TabsTrigger value="preview" className="text-xs">Preview</TabsTrigger>
+            <TabsTrigger value="bulk" className="text-xs">Bulk</TabsTrigger>
+            <TabsTrigger value="ai" className="text-xs">
+              <Sparkles className="h-4 w-4 mr-1" />
+              AI
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="search" className="flex-1 m-0">
+            <div className="h-full overflow-hidden">
+              <SearchPanel
+                searchTerm={searchTerm}
+                replaceTerm={replaceTerm}
+                onSearchChange={setSearchTerm}
+                onReplaceChange={setReplaceTerm}
+                onFindAll={() => console.log('Find all')}
+                onReplaceAll={() => console.log('Replace all')}
+                matchCount={mockMatches.length}
+                isAiEnabled={isAiEnabled}
+                onToggleAi={() => setIsAiEnabled(!isAiEnabled)}
+              />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="preview" className="flex-1 m-0">
+            <PreviewPanel
+              matches={searchTerm ? mockMatches : []}
+              onAcceptMatch={(id) => console.log('Accept:', id)}
+              onRejectMatch={(id) => console.log('Reject:', id)}
+              onAcceptAll={() => console.log('Accept all')}
+            />
+          </TabsContent>
+
+          <TabsContent value="bulk" className="flex-1 m-0 overflow-hidden">
+            <div className="h-full overflow-y-auto">
+              <BulkOperations
+                operations={mockOperations}
+                onStartOperation={(type) => console.log('Start:', type)}
+                onCancelOperation={(id) => console.log('Cancel:', id)}
+                onDownloadReport={(id) => console.log('Download:', id)}
+              />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="ai" className="flex-1 m-0">
+            <BrandkitSuggestions
+              suggestions={isAiEnabled ? mockSuggestions : []}
+              onAcceptSuggestion={(id) => console.log('Accept suggestion:', id)}
+              onRejectSuggestion={(id) => console.log('Reject suggestion:', id)}
+              onAcceptAll={() => console.log('Accept all suggestions')}
+            />
+          </TabsContent>
+        </Tabs>
+      </div>
+
+      {/* Desktop Layout (>= lg) */}
+      <div className="hidden lg:flex">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1">
-          {/* Left Sidebar - Always visible */}
+          {/* Left Sidebar - Search Panel */}
           <SearchPanel
             searchTerm={searchTerm}
             replaceTerm={replaceTerm}

@@ -49,60 +49,60 @@ const BrandkitSuggestions = ({
   };
 
   return (
-    <div className="w-96 bg-panel border-l border-border h-screen overflow-y-auto">
+    <div className="w-full lg:w-96 bg-panel border-l lg:border-l border-border h-full lg:h-screen overflow-y-auto">
       {/* Header */}
-      <div className="p-4 border-b border-border">
+      <div className="p-3 lg:p-4 border-b border-border">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-ai" />
-            <h2 className="font-semibold text-foreground">Brandkit AI</h2>
+            <Sparkles className="h-4 w-4 lg:h-5 lg:w-5 text-ai" />
+            <h2 className="font-semibold text-foreground text-sm lg:text-base">Brandkit AI</h2>
           </div>
           {suggestions.length > 0 && (
             <Button 
               size="sm" 
               onClick={onAcceptAll}
-              className="bg-gradient-ai text-ai-foreground"
+              className="bg-gradient-ai text-ai-foreground text-xs lg:text-sm"
             >
               Accept All
             </Button>
           )}
         </div>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-xs lg:text-sm text-muted-foreground">
           Smart suggestions to maintain brand consistency
         </p>
       </div>
 
       {/* Suggestions List */}
-      <div className="p-4 space-y-4">
+      <div className="p-3 lg:p-4 space-y-3 lg:space-y-4">
         {suggestions.map((suggestion) => (
-          <Card key={suggestion.id} className="p-4 shadow-soft">
-            <div className="space-y-3">
+          <Card key={suggestion.id} className="p-3 lg:p-4 shadow-soft">
+            <div className="space-y-2 lg:space-y-3">
               {/* Category Badge */}
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <Badge className={getCategoryColor(suggestion.category)}>
                   {getCategoryIcon(suggestion.category)}
-                  <span className="ml-1 capitalize">
+                  <span className="ml-1 capitalize text-xs">
                     {suggestion.category.replace('-', ' ')}
                   </span>
                 </Badge>
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs w-fit">
                   {Math.round(suggestion.confidence * 100)}% confidence
                 </Badge>
               </div>
 
               {/* Term Replacement Preview */}
               <div className="space-y-2">
-                <div className="flex items-center justify-center py-2">
-                  <span className="px-3 py-1 bg-destructive/10 text-destructive rounded-md font-mono text-sm">
+                <div className="flex flex-col sm:flex-row items-center justify-center py-2 gap-2">
+                  <span className="px-2 lg:px-3 py-1 bg-destructive/10 text-destructive rounded-md font-mono text-xs lg:text-sm break-all">
                     {suggestion.originalTerm}
                   </span>
-                  <ArrowRight className="h-4 w-4 mx-3 text-muted-foreground" />
-                  <span className="px-3 py-1 bg-success/10 text-success rounded-md font-mono text-sm">
+                  <ArrowRight className="h-3 w-3 lg:h-4 lg:w-4 text-muted-foreground flex-shrink-0" />
+                  <span className="px-2 lg:px-3 py-1 bg-success/10 text-success rounded-md font-mono text-xs lg:text-sm break-all">
                     {suggestion.suggestedTerm}
                   </span>
                 </div>
                 
-                <p className="text-sm text-muted-foreground text-center">
+                <p className="text-xs lg:text-sm text-muted-foreground text-center">
                   {suggestion.reason}
                 </p>
               </div>
@@ -114,11 +114,11 @@ const BrandkitSuggestions = ({
                 </p>
                 <div className="space-y-1">
                   {suggestion.locations.slice(0, 3).map((location, index) => (
-                    <div key={index} className="flex items-center justify-between text-xs">
-                      <span className="text-muted-foreground truncate">
+                    <div key={index} className="flex items-center justify-between text-xs gap-2">
+                      <span className="text-muted-foreground truncate min-w-0">
                         {location.entryTitle} • {location.field}
                       </span>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs flex-shrink-0">
                         {location.occurrences}x
                       </Badge>
                     </div>
@@ -132,7 +132,7 @@ const BrandkitSuggestions = ({
               </div>
 
               {/* Actions */}
-              <div className="flex gap-2 pt-2">
+              <div className="flex flex-col sm:flex-row gap-2 pt-2">
                 <Button
                   variant="outline"
                   size="sm"
@@ -154,10 +154,10 @@ const BrandkitSuggestions = ({
         ))}
 
         {suggestions.length === 0 && (
-          <div className="text-center py-8">
-            <Sparkles className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">All Clear!</h3>
-            <p className="text-sm text-muted-foreground">
+          <div className="text-center py-6 lg:py-8">
+            <Sparkles className="h-8 w-8 lg:h-12 lg:w-12 mx-auto text-muted-foreground mb-4" />
+            <h3 className="text-base lg:text-lg font-medium text-foreground mb-2">All Clear!</h3>
+            <p className="text-xs lg:text-sm text-muted-foreground px-4">
               Your content follows all brandkit guidelines. 
               Run a search to get AI-powered suggestions.
             </p>
@@ -166,7 +166,7 @@ const BrandkitSuggestions = ({
       </div>
 
       {/* Brandkit Rules Summary */}
-      <div className="p-4 border-t border-border">
+      <div className="p-3 lg:p-4 border-t border-border">
         <h3 className="text-sm font-medium text-foreground mb-3">Active Rules</h3>
         <div className="space-y-2 text-xs">
           <div className="flex items-center justify-between">
